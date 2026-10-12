@@ -40,13 +40,26 @@
 
 ## 快速开始
 
-把 `frp.sh` 复制到需要安装的机器上（服务器和内网机器都需要一份），例如：
+### 1. 下载脚本
+
+在需要安装的机器上（公网服务器和内网机器都需要）下载脚本：
 
 ```bash
-scp frp.sh root@your-server:/root/
+curl -fsSL https://raw.githubusercontent.com/startuip/frp-sh/main/frp.sh -o frp.sh
 ```
 
-### 1. 在公网服务器上安装 frps
+国内服务器访问 GitHub 较慢或失败时，改用加速镜像：
+
+```bash
+curl -fsSL https://gh-proxy.com/https://raw.githubusercontent.com/startuip/frp-sh/main/frp.sh -o frp.sh
+```
+
+- 没有 curl 时可以用 wget：`wget -O frp.sh <上面的地址>`
+- 机器无法访问外网时，可以在别处下载后用 `scp frp.sh root@your-server:/root/` 复制过去
+
+下载后运行 `sudo bash frp.sh` 即可进入交互菜单；也可以按下面的步骤用命令完成安装。
+
+### 2. 在公网服务器上安装 frps
 
 ```bash
 sudo bash frp.sh install frps
@@ -67,7 +80,7 @@ sudo bash frp.sh install frps
 
 > 云服务器上显示的通常是内网 IP，请替换成公网 IP；并记得在**云厂商安全组**中放行相应端口。
 
-### 2. 在内网机器上安装 frpc
+### 3. 在内网机器上安装 frpc
 
 复制上一步打印的命令（把 IP 换成服务器公网 IP）：
 
@@ -77,7 +90,7 @@ sudo bash frp.sh install frpc --server 1.2.3.4 --port 7000 --token 3f9a...e21c
 
 脚本会检查 frpc 是否已成功连接到服务器，并给出提示。
 
-### 3. 添加穿透规则
+### 4. 添加穿透规则
 
 例如把内网机器的 SSH（22 端口）映射到服务器的 6000 端口：
 
