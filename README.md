@@ -42,18 +42,20 @@
 
 ### 1. 下载脚本
 
-在需要安装的机器上（公网服务器和内网机器都需要）下载脚本：
+在需要安装的机器上（公网服务器和内网机器都需要）下载最新发布版本：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/startuip/frp-sh/main/frp.sh -o frp.sh
+curl -fsSL https://github.com/startuip/frp-sh/releases/latest/download/frp.sh -o frp.sh
 ```
 
 国内服务器访问 GitHub 较慢或失败时，改用加速镜像：
 
 ```bash
-curl -fsSL https://gh-proxy.com/https://raw.githubusercontent.com/startuip/frp-sh/main/frp.sh -o frp.sh
+curl -fsSL https://gh-proxy.com/https://github.com/startuip/frp-sh/releases/latest/download/frp.sh -o frp.sh
 ```
 
+- 需要固定版本时，把地址中的 `latest/download` 换成 `download/<版本号>`，例如 `download/v1.0.0`；
+  所有版本见 [Releases](https://github.com/startuip/frp-sh/releases)
 - 没有 curl 时可以用 wget：`wget -O frp.sh <上面的地址>`
 - 机器无法访问外网时，可以在别处下载后用 `scp frp.sh root@your-server:/root/` 复制过去
 
